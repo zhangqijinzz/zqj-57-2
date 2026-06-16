@@ -1,0 +1,527 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  padding: $spacing-lg $page-padding $spacing-xl;
+}
+
+.header {
+  margin-bottom: $spacing-lg;
+}
+
+.title {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-sm;
+  background: linear-gradient(135deg, $color-health 0%, $color-primary 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-lg;
+}
+
+.stageSelector {
+  margin-bottom: $spacing-lg;
+
+  .label {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    margin-bottom: $spacing-sm;
+  }
+
+  .stageTabs {
+    @include scroll-x-container;
+    padding-bottom: $spacing-sm;
+
+    .stageTab {
+      @include scroll-x-item(auto);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      padding: $spacing-md $spacing-lg;
+      margin-right: $spacing-md;
+      border-radius: $radius-lg;
+      background-color: $color-bg-card;
+      border: 2rpx solid transparent;
+      transition: all $transition-base;
+      min-width: 140rpx;
+
+      &.active {
+        background: linear-gradient(135deg, $color-health 0%, #34D399 100%);
+        border-color: $color-health;
+
+        .stageLabel, .stageIcon {
+          color: $color-text-white;
+        }
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      .stageIcon {
+        font-size: 36rpx;
+        margin-bottom: $spacing-xs;
+      }
+
+      .stageLabel {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        color: $color-text-primary;
+      }
+    }
+  }
+}
+
+.categoryTabs {
+  @include scroll-x-container;
+  padding-bottom: $spacing-sm;
+  margin-bottom: $spacing-lg;
+
+  .tabItem {
+    @include scroll-x-item(auto);
+    display: inline-flex;
+    align-items: center;
+    padding: $spacing-sm $spacing-lg;
+    margin-right: $spacing-md;
+    border-radius: $radius-button;
+    background-color: $color-bg-card;
+    border: 2rpx solid transparent;
+    transition: all $transition-base;
+
+    &.active {
+      .tabIcon {
+        color: $color-text-white;
+      }
+      .tabLabel {
+        color: $color-text-white;
+      }
+    }
+
+    &.active.refresh {
+      background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+      border-color: $color-primary;
+    }
+
+    &.active.sleep {
+      background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+      border-color: #8B5CF6;
+    }
+
+    &.active.energy {
+      background: linear-gradient(135deg, $color-warning 0%, #FBBF24 100%);
+      border-color: $color-warning;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    .tabIcon {
+      font-size: $font-size-lg;
+      margin-right: $spacing-sm;
+    }
+
+    .tabLabel {
+      font-size: $font-size-md;
+      font-weight: $font-weight-medium;
+      color: $color-text-primary;
+    }
+  }
+}
+
+.tipCard {
+  padding: $spacing-lg;
+  background: linear-gradient(135deg, rgba($color-health, 0.1) 0%, rgba($color-primary, 0.1) 100%);
+  border-radius: $radius-lg;
+  margin-bottom: $spacing-lg;
+  border: 2rpx solid rgba($color-health, 0.2);
+
+  .tipText {
+    font-size: $font-size-sm;
+    color: $color-text-primary;
+    line-height: $line-height-loose;
+
+    .emoji {
+      margin-right: $spacing-sm;
+    }
+  }
+}
+
+.recipeList {
+  margin-bottom: 120rpx;
+}
+
+.emptyState {
+  text-align: center;
+  padding: $spacing-xl * 2;
+
+  .emoji {
+    font-size: 120rpx;
+    margin-bottom: $spacing-lg;
+  }
+
+  .title {
+    font-size: $font-size-lg;
+    color: $color-text-primary;
+    margin-bottom: $spacing-sm;
+    background: none;
+    -webkit-text-fill-color: initial;
+  }
+
+  .desc {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+  }
+}
+
+.fab {
+  position: fixed;
+  right: $spacing-xl;
+  bottom: 180rpx;
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: $radius-round;
+  background: linear-gradient(135deg, $color-health 0%, #34D399 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 32rpx rgba($color-health, 0.5);
+  z-index: 100;
+  transition: all $transition-base;
+
+  &:active {
+    transform: scale(0.9);
+    box-shadow: 0 4rpx 16rpx rgba($color-health, 0.5);
+  }
+
+  .icon {
+    font-size: 48rpx;
+  }
+}
+
+.shareModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: $spacing-xl;
+
+  .modalContent {
+    width: 100%;
+    background-color: $color-bg-card;
+    border-radius: $radius-xl;
+    padding: $spacing-xl;
+    text-align: center;
+  }
+
+  .modalTitle {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+    margin-bottom: $spacing-md;
+  }
+
+  .modalDesc {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    margin-bottom: $spacing-xl;
+  }
+
+  .stageHint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $spacing-xl;
+    padding: $spacing-sm $spacing-md;
+    background-color: rgba($color-primary, 0.1);
+    border-radius: $radius-md;
+    border: 2rpx solid rgba($color-primary, 0.2);
+
+    .stageHintIcon {
+      font-size: $font-size-md;
+      margin-right: $spacing-xs;
+    }
+
+    .stageHintText {
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+    }
+
+    .stageHintStage {
+      color: $color-primary;
+      font-weight: $font-weight-semibold;
+    }
+
+    .stageHintCategory {
+      color: $color-warning;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  .uploadArea {
+    width: 100%;
+    height: 300rpx;
+    border: 4rpx dashed $color-border;
+    border-radius: $radius-lg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $spacing-xl;
+    transition: all $transition-base;
+
+    &:active {
+      border-color: $color-health;
+      background-color: rgba($color-health, 0.05);
+    }
+
+    .uploadIcon {
+      font-size: 80rpx;
+      margin-bottom: $spacing-md;
+    }
+
+    .uploadText {
+      font-size: $font-size-sm;
+      color: $color-text-tertiary;
+      margin-bottom: $spacing-xs;
+    }
+
+    .uploadHint {
+      font-size: $font-size-xs;
+      color: $color-text-disabled;
+    }
+  }
+
+  .imagePreview {
+    width: 100%;
+    height: 300rpx;
+    border-radius: $radius-lg;
+    margin-bottom: $spacing-xl;
+    position: relative;
+    overflow: hidden;
+
+    .previewImage {
+      width: 100%;
+      height: 100%;
+    }
+
+    .changeImageBtn {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.6);
+      padding: $spacing-sm;
+      text-align: center;
+
+      .changeImageText {
+        font-size: $font-size-sm;
+        color: $color-text-white;
+      }
+    }
+  }
+
+  .input {
+    width: 100%;
+    height: 80rpx;
+    background-color: $color-bg-hover;
+    border-radius: $radius-md;
+    padding: 0 $spacing-md;
+    font-size: $font-size-md;
+    color: $color-text-primary;
+    margin-bottom: $spacing-xl;
+    border: none;
+  }
+
+  .actions {
+    display: flex;
+    gap: $spacing-md;
+
+    .btn {
+      @include button-reset;
+      flex: 1;
+      height: $button-height-md;
+      border-radius: $radius-button;
+      font-size: $font-size-md;
+      font-weight: $font-weight-medium;
+
+      &.cancel {
+        background-color: $color-bg-hover;
+        color: $color-text-primary;
+      }
+
+      &.submit {
+        background: linear-gradient(135deg, $color-health 0%, #34D399 100%);
+        color: $color-text-white;
+      }
+    }
+  }
+}
+
+.successModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  padding: $spacing-xl;
+
+  .successContent {
+    width: 100%;
+    background-color: $color-bg-card;
+    border-radius: $radius-xl;
+    padding: $spacing-xl * 1.5 $spacing-xl;
+    text-align: center;
+  }
+
+  .successIconWrap {
+    width: 140rpx;
+    height: 140rpx;
+    border-radius: $radius-round;
+    background: linear-gradient(135deg, $color-warning 0%, #FBBF24 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto $spacing-lg;
+    box-shadow: 0 8rpx 32rpx rgba($color-warning, 0.4);
+    animation: successBounce 0.6s ease-out;
+  }
+
+  @keyframes successBounce {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+    70% {
+      transform: scale(0.95);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .successIcon {
+    font-size: 72rpx;
+  }
+
+  .successTitle {
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+    margin-bottom: $spacing-lg;
+  }
+
+  .successInfo {
+    background-color: $color-bg-hover;
+    border-radius: $radius-md;
+    padding: $spacing-md;
+    margin-bottom: $spacing-md;
+
+    .successInfoItem {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: $spacing-xs;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .successInfoIcon {
+      font-size: $font-size-md;
+      margin-right: $spacing-xs;
+    }
+
+    .successInfoLabel {
+      font-size: $font-size-sm;
+      color: $color-text-secondary;
+    }
+
+    .successInfoValue {
+      font-size: $font-size-sm;
+      color: $color-health;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  .switchTip {
+    display: flex;
+    align-items: flex-start;
+    padding: $spacing-md;
+    background-color: rgba($color-primary, 0.1);
+    border-radius: $radius-md;
+    border: 2rpx solid rgba($color-primary, 0.2);
+    margin-bottom: $spacing-md;
+
+    .switchTipIcon {
+      font-size: $font-size-lg;
+      margin-right: $spacing-sm;
+      flex-shrink: 0;
+    }
+
+    .switchTipTextWrap {
+      flex: 1;
+      text-align: left;
+    }
+
+    .switchTipTitle {
+      display: block;
+      font-size: $font-size-sm;
+      color: $color-primary;
+      font-weight: $font-weight-semibold;
+      margin-bottom: 4rpx;
+    }
+
+    .switchTipDesc {
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+      line-height: $line-height-normal;
+    }
+  }
+
+  .highlightTip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-sm $spacing-md;
+    background-color: rgba($color-warning, 0.1);
+    border-radius: $radius-md;
+    margin-bottom: $spacing-xl;
+
+    .highlightTipIcon {
+      font-size: $font-size-md;
+      margin-right: $spacing-xs;
+    }
+
+    .highlightTipText {
+      font-size: $font-size-xs;
+      color: $color-warning;
+    }
+  }
+
+  .successBtn {
+    width: 100%;
+    height: $button-height-lg;
+  }
+}

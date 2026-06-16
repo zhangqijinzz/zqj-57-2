@@ -1,0 +1,176 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  padding: $spacing-lg $page-padding $spacing-xl;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+  padding-top: $spacing-lg;
+}
+
+.title {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-sm;
+  background: linear-gradient(135deg, $color-primary 0%, $color-energy 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.currentTime {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-md;
+  font-family: 'Courier New', monospace;
+}
+
+.stageTag {
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-round;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  background: linear-gradient(135deg, rgba($color-primary, 0.2) 0%, rgba($color-primary, 0.1) 100%);
+  color: $color-primary-light;
+  border: 2rpx solid rgba($color-primary, 0.3);
+}
+
+.countdownSection {
+  margin-bottom: $spacing-xl;
+}
+
+.checkinSection {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+}
+
+.checkinBtn {
+  @include button-reset;
+  height: $button-height-lg;
+  width: 100%;
+  max-width: 500rpx;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  border-radius: $radius-button;
+  color: $color-text-white;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  box-shadow: 0 0 30rpx rgba($color-primary, 0.5);
+  margin: 0 auto;
+
+  &.checked {
+    background: linear-gradient(135deg, $color-success 0%, #34D399 100%);
+    box-shadow: 0 0 30rpx rgba($color-success, 0.5);
+  }
+
+  &:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+}
+
+.checkinStreak {
+  margin-top: $spacing-md;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+
+  .highlight {
+    color: $color-warning;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-md;
+  }
+}
+
+.achievementSection {
+  margin-bottom: $spacing-xl;
+}
+
+.sectionTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-md;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .viewAll {
+    font-size: $font-size-sm;
+    color: $color-primary-light;
+    font-weight: $font-weight-normal;
+  }
+}
+
+.achievementScroll {
+  @include scroll-x-container;
+  padding-bottom: $spacing-sm;
+
+  .achievementItem {
+    @include scroll-x-item(160rpx);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: $spacing-md;
+
+    .icon {
+      width: 100rpx;
+      height: 100rpx;
+      border-radius: $radius-round;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48rpx;
+      margin-bottom: $spacing-sm;
+      background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+      box-shadow: 0 0 20rpx $color-primary-glow;
+
+      &.locked {
+        background: $color-bg-hover;
+        box-shadow: none;
+        opacity: 0.5;
+      }
+    }
+
+    .name {
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+      text-align: center;
+      @include text-ellipsis;
+      width: 100%;
+    }
+  }
+}
+
+.encouragement {
+  text-align: center;
+  padding: $spacing-lg;
+  background: linear-gradient(135deg, rgba($color-primary, 0.1) 0%, rgba($color-energy, 0.1) 100%);
+  border-radius: $radius-lg;
+  border: 2rpx solid rgba($color-primary, 0.2);
+}
+
+.encouragementText {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  line-height: $line-height-loose;
+  font-style: italic;
+
+  .emoji {
+    font-size: $font-size-xl;
+    margin-right: $spacing-sm;
+  }
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200rpx;
+  font-size: $font-size-md;
+  color: $color-text-tertiary;
+}

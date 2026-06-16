@@ -1,0 +1,85 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  padding: $spacing-lg $page-padding $spacing-xl;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+}
+
+.title {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-sm;
+  background: linear-gradient(135deg, $color-primary 0%, $color-warning 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-xl * 2;
+  margin-top: $spacing-lg;
+}
+
+.statItem {
+  text-align: center;
+
+  .statValue {
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-bold;
+    color: $color-primary-light;
+  }
+
+  .statLabel {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    margin-top: $spacing-xs;
+  }
+}
+
+.tabs {
+  @include scroll-x-container;
+  padding-bottom: $spacing-sm;
+  margin-bottom: $spacing-lg;
+
+  .tabItem {
+    @include scroll-x-item(auto);
+    display: inline-flex;
+    align-items: center;
+    padding: $spacing-sm $spacing-lg;
+    margin-right: $spacing-md;
+    border-radius: $radius-button;
+    background-color: $color-bg-card;
+    border: 2rpx solid transparent;
+    transition: all $transition-base;
+
+    &.active {
+      background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+      border-color: $color-primary;
+
+      .tabLabel {
+        color: $color-text-white;
+      }
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .tabLabel {
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+  }
+}
+
+.achievementList {
+  margin-bottom: $spacing-lg;
+}

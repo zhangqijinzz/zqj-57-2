@@ -1,0 +1,174 @@
+@use '@/styles/variables.scss' as *;
+
+.card {
+  background-color: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.3);
+  transition: all $transition-base;
+
+  &:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-md;
+}
+
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: $radius-round;
+  margin-right: $spacing-md;
+  position: relative;
+
+  image {
+    width: 100%;
+    height: 100%;
+    border-radius: $radius-round;
+  }
+}
+
+.statusDot {
+  position: absolute;
+  bottom: 4rpx;
+  right: 4rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: $radius-round;
+  border: 3rpx solid $color-bg-card;
+
+  &.onShift {
+    background-color: $color-success;
+  }
+
+  &.rest {
+    background-color: $color-warning;
+  }
+
+  &.offline {
+    background-color: $color-text-disabled;
+  }
+}
+
+.info {
+  flex: 1;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-xs;
+}
+
+.name {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-right: $spacing-sm;
+}
+
+.industryTag {
+  font-size: $font-size-xs;
+  padding: 4rpx 12rpx;
+  border-radius: $radius-xs;
+  background-color: rgba($color-primary, 0.2);
+  color: $color-primary-light;
+}
+
+.shiftTime {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.workplace {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+  display: flex;
+  align-items: center;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+}
+
+.tag {
+  font-size: $font-size-xs;
+  padding: 4rpx 12rpx;
+  border-radius: $radius-xs;
+  background-color: $color-bg-hover;
+  color: $color-text-secondary;
+}
+
+.voiceBox {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md;
+  background-color: $color-bg-hover;
+  border-radius: $radius-md;
+  margin-top: $spacing-md;
+}
+
+.voiceBtn {
+  @include button-reset;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: $radius-round;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  margin-right: $spacing-md;
+  flex-shrink: 0;
+
+  &.playing {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  .playIcon {
+    color: $color-text-white;
+    font-size: $font-size-lg;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.voiceContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.voiceText {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  margin-bottom: $spacing-xs;
+  @include text-ellipsis;
+}
+
+.voiceMeta {
+  display: flex;
+  align-items: center;
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.duration {
+  margin-right: $spacing-sm;
+}
+
+.lastActive {
+  margin-left: auto;
+}

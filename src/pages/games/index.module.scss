@@ -1,0 +1,153 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  padding: $spacing-lg $page-padding $spacing-xl;
+}
+
+.header {
+  margin-bottom: $spacing-lg;
+}
+
+.title {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-sm;
+  background: linear-gradient(135deg, $color-primary 0%, $color-warning 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-lg;
+}
+
+.tabs {
+  @include scroll-x-container;
+  padding-bottom: $spacing-sm;
+  margin-bottom: $spacing-lg;
+
+  .tabItem {
+    @include scroll-x-item(auto);
+    display: inline-flex;
+    align-items: center;
+    padding: $spacing-sm $spacing-lg;
+    margin-right: $spacing-md;
+    border-radius: $radius-button;
+    background-color: $color-bg-card;
+    border: 2rpx solid transparent;
+    transition: all $transition-base;
+
+    &.active {
+      background: linear-gradient(135deg, $color-warning 0%, #FBBF24 100%);
+      border-color: $color-warning;
+
+      .tabLabel {
+        color: $color-text-white;
+      }
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .tabLabel {
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+  }
+}
+
+.statsBar {
+  display: flex;
+  justify-content: space-around;
+  padding: $spacing-lg;
+  background-color: $color-bg-card;
+  border-radius: $radius-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.3);
+
+  .statItem {
+    text-align: center;
+
+    .statValue {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $color-warning;
+    }
+
+    .statLabel {
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+      margin-top: $spacing-xs;
+    }
+  }
+}
+
+.gameGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+}
+
+.gameCardWrapper {
+  width: calc(50% - 12rpx);
+
+  @media (max-width: 750rpx) {
+    width: 100%;
+  }
+}
+
+.featuredGame {
+  margin-bottom: $spacing-lg;
+
+  .featuredLabel {
+    font-size: $font-size-sm;
+    color: $color-warning;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-md;
+    display: flex;
+    align-items: center;
+
+    .emoji {
+      margin-right: $spacing-sm;
+    }
+  }
+}
+
+.emptyState {
+  text-align: center;
+  padding: $spacing-xl * 2;
+
+  .emoji {
+    font-size: 120rpx;
+    margin-bottom: $spacing-lg;
+  }
+
+  .title {
+    font-size: $font-size-lg;
+    color: $color-text-primary;
+    margin-bottom: $spacing-sm;
+    background: none;
+    -webkit-text-fill-color: initial;
+  }
+
+  .desc {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+  }
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200rpx;
+  font-size: $font-size-md;
+  color: $color-text-tertiary;
+}

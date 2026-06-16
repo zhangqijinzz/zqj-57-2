@@ -1,0 +1,256 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  padding: $spacing-lg $page-padding $spacing-xl;
+}
+
+.header {
+  margin-bottom: $spacing-lg;
+}
+
+.title {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.subtitle {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-lg;
+}
+
+.tabs {
+  @include scroll-x-container;
+  padding-bottom: $spacing-sm;
+  margin-bottom: $spacing-lg;
+
+  .tabItem {
+    @include scroll-x-item(auto);
+    display: inline-flex;
+    align-items: center;
+    padding: $spacing-sm $spacing-lg;
+    margin-right: $spacing-md;
+    border-radius: $radius-button;
+    background-color: $color-bg-card;
+    border: 2rpx solid transparent;
+    transition: all $transition-base;
+
+    &.active {
+      background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+      border-color: $color-primary;
+      box-shadow: 0 0 20rpx $color-primary-glow;
+
+      .tabLabel, .tabCount {
+        color: $color-text-white;
+      }
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .tabLabel {
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+    margin-right: $spacing-sm;
+  }
+
+  .tabCount {
+    font-size: $font-size-xs;
+    color: $color-text-tertiary;
+    background-color: rgba($color-bg-hover, 0.8);
+    padding: 2rpx 10rpx;
+    border-radius: $radius-round;
+  }
+}
+
+.statsBar {
+  display: flex;
+  justify-content: space-around;
+  padding: $spacing-lg;
+  background-color: $color-bg-card;
+  border-radius: $radius-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.3);
+
+  .statItem {
+    text-align: center;
+
+    .statValue {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $color-primary-light;
+    }
+
+    .statLabel {
+      font-size: $font-size-xs;
+      color: $color-text-secondary;
+      margin-top: $spacing-xs;
+    }
+  }
+}
+
+.workerList {
+  margin-bottom: 120rpx;
+}
+
+.emptyState {
+  text-align: center;
+  padding: $spacing-xl * 2;
+
+  .emoji {
+    font-size: 120rpx;
+    margin-bottom: $spacing-lg;
+  }
+
+  .title {
+    font-size: $font-size-lg;
+    color: $color-text-primary;
+    margin-bottom: $spacing-sm;
+  }
+
+  .desc {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+  }
+}
+
+.fab {
+  position: fixed;
+  right: $spacing-xl;
+  bottom: 180rpx;
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: $radius-round;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 32rpx rgba($color-primary, 0.5);
+  z-index: 100;
+  transition: all $transition-base;
+
+  &:active {
+    transform: scale(0.9);
+    box-shadow: 0 4rpx 16rpx rgba($color-primary, 0.5);
+  }
+
+  &.recording {
+    background: linear-gradient(135deg, $color-error 0%, #F87171 100%);
+    box-shadow: 0 8rpx 32rpx rgba($color-error, 0.5);
+    animation: pulse 1s ease-in-out infinite;
+  }
+
+  .icon {
+    font-size: 48rpx;
+  }
+
+  .recordingText {
+    position: absolute;
+    right: 130rpx;
+    white-space: nowrap;
+    background-color: $color-bg-card;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-md;
+    font-size: $font-size-sm;
+    color: $color-text-primary;
+    box-shadow: $shadow-card;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.recordModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+
+  .wave {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 200rpx;
+    margin-bottom: $spacing-xl;
+
+    .waveBar {
+      width: 12rpx;
+      background: linear-gradient(180deg, $color-primary 0%, $color-primary-light 100%);
+      margin: 0 6rpx;
+      border-radius: $radius-round;
+      animation: wave 0.5s ease-in-out infinite alternate;
+
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+          height: #{30 + random(80)}rpx;
+          animation-delay: #{$i * 0.05}s;
+        }
+      }
+    }
+  }
+
+  @keyframes wave {
+    to {
+      height: 180rpx;
+    }
+  }
+
+  .recordingTime {
+    font-size: 80rpx;
+    font-weight: $font-weight-bold;
+    color: $color-text-white;
+    margin-bottom: $spacing-lg;
+    font-family: 'Courier New', monospace;
+  }
+
+  .tip {
+    font-size: $font-size-md;
+    color: $color-text-secondary;
+    margin-bottom: $spacing-xl;
+  }
+
+  .actions {
+    display: flex;
+    gap: $spacing-xl;
+
+    .btn {
+      @include button-reset;
+      width: 120rpx;
+      height: 120rpx;
+      border-radius: $radius-round;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48rpx;
+
+      &.cancel {
+        background-color: $color-bg-hover;
+        color: $color-text-primary;
+      }
+
+      &.send {
+        background: linear-gradient(135deg, $color-success 0%, #34D399 100%);
+        color: $color-text-white;
+      }
+    }
+  }
+}

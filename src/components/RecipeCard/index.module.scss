@@ -1,0 +1,182 @@
+@use '@/styles/variables.scss' as *;
+
+.card {
+  background-color: $color-bg-card;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.3);
+  transition: all $transition-base;
+  margin-bottom: $spacing-lg;
+  position: relative;
+
+  &:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+
+  &.highlight {
+    animation: highlightPulse 1.5s ease-in-out 3;
+  }
+
+  &.isNew {
+    border: 4rpx solid $color-energy;
+    box-shadow: 0 4rpx 32rpx rgba($color-energy, 0.4);
+  }
+}
+
+@keyframes highlightPulse {
+  0%, 100% {
+    box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 4rpx 32rpx rgba($color-energy, 0.6);
+    transform: scale(1.01);
+  }
+}
+
+.cover {
+  width: 100%;
+  height: 320rpx;
+  position: relative;
+
+  image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .categoryTag {
+    position: absolute;
+    top: $spacing-md;
+    left: $spacing-md;
+    font-size: $font-size-xs;
+    padding: 6rpx 16rpx;
+    border-radius: $radius-xs;
+    color: $color-text-white;
+    font-weight: $font-weight-medium;
+
+    &.refresh {
+      background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+    }
+
+    &.sleep {
+      background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+    }
+
+    &.energy {
+      background: linear-gradient(135deg, $color-warning 0%, #FBBF24 100%);
+    }
+  }
+
+  .newBadge {
+    position: absolute;
+    top: $spacing-md;
+    right: $spacing-md;
+    transform: translateX(-88rpx);
+    background: linear-gradient(135deg, $color-error 0%, #F87171 100%);
+    padding: 4rpx 14rpx;
+    border-radius: $radius-xs;
+
+    .newBadgeText {
+      font-size: 20rpx;
+      color: $color-text-white;
+      font-weight: $font-weight-bold;
+      letter-spacing: 1rpx;
+    }
+  }
+
+  .likes {
+    position: absolute;
+    top: $spacing-md;
+    right: $spacing-md;
+    font-size: $font-size-xs;
+    padding: 6rpx 12rpx;
+    border-radius: $radius-xs;
+    background: rgba(0, 0, 0, 0.6);
+    color: $color-text-white;
+  }
+}
+
+.content {
+  padding: $spacing-lg;
+}
+
+.name {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.description {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+  margin-bottom: $spacing-md;
+  @include text-ellipsis-multi(2);
+}
+
+.suitableStages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+}
+
+.stageTag {
+  font-size: $font-size-xs;
+  padding: 4rpx 12rpx;
+  border-radius: $radius-xs;
+  background-color: rgba($color-health, 0.15);
+  color: $color-health;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+
+  .avatar {
+    width: 48rpx;
+    height: 48rpx;
+    border-radius: $radius-round;
+    margin-right: $spacing-sm;
+  }
+
+  .info {
+    .name {
+      font-size: $font-size-xs;
+      color: $color-text-primary;
+      font-weight: $font-weight-medium;
+      margin-bottom: 0;
+    }
+
+    .workplace {
+      font-size: 20rpx;
+      color: $color-text-tertiary;
+    }
+  }
+}
+
+.nutrition {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.nutritionItem {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  display: flex;
+  align-items: center;
+
+  .value {
+    color: $color-text-secondary;
+    font-weight: $font-weight-medium;
+    margin-left: 4rpx;
+  }
+}

@@ -1,0 +1,114 @@
+@use '@/styles/variables.scss' as *;
+
+.card {
+  background: linear-gradient(135deg, $color-bg-card 0%, $color-bg-page 100%);
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-lg;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300rpx;
+    height: 300rpx;
+    border-radius: 50%;
+    background: radial-gradient(circle, currentColor 0%, transparent 70%);
+    opacity: 0.1;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+  position: relative;
+  z-index: 1;
+}
+
+.icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: $radius-round;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin-right: $spacing-md;
+  box-shadow: 0 0 20rpx currentColor;
+}
+
+.info {
+  flex: 1;
+}
+
+.label {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.targetTime {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.countdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.timeBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.timeValue {
+  font-size: 72rpx;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  font-family: 'Courier New', monospace;
+  line-height: 1;
+  text-shadow: 0 0 20rpx currentColor;
+}
+
+.timeLabel {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-top: $spacing-sm;
+}
+
+.separator {
+  font-size: 48rpx;
+  font-weight: $font-weight-bold;
+  color: $color-text-tertiary;
+  line-height: 1;
+  margin: 0 $spacing-sm;
+}
+
+.progressBar {
+  height: 8rpx;
+  background-color: $color-bg-hover;
+  border-radius: $radius-round;
+  margin-top: $spacing-lg;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: $radius-round;
+  transition: width 1s linear;
+  box-shadow: 0 0 10rpx currentColor;
+}
