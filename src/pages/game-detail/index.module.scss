@@ -2,32 +2,701 @@
 
 .page {
   min-height: 100vh;
-  padding: $spacing-lg $page-padding $spacing-xl;
+  background-color: $color-bg-page;
+  position: relative;
 }
 
-.placeholder {
+.notFound {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: $spacing-xl * 3;
-  text-align: center;
 }
 
-.icon {
+.notFoundIcon {
   font-size: 120rpx;
-  margin-bottom: $spacing-xl;
+  margin-bottom: $spacing-lg;
 }
 
-.title {
-  font-size: $font-size-xl;
+.notFoundText {
+  font-size: $font-size-lg;
+  color: $color-text-secondary;
+}
+
+.detailScroll {
+  height: 100vh;
+  padding-bottom: 200rpx;
+}
+
+.coverWrap {
+  position: relative;
+  width: 100%;
+  height: 450rpx;
+  overflow: hidden;
+}
+
+.coverImage {
+  width: 100%;
+  height: 100%;
+}
+
+.coverOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent);
+}
+
+.coverInfo {
+  position: absolute;
+  bottom: $spacing-lg;
+  left: $spacing-lg;
+  right: $spacing-lg;
+}
+
+.gameName {
+  font-size: $font-size-xxl;
   font-weight: $font-weight-bold;
+  color: $color-text-white;
+  margin-bottom: $spacing-md;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.5);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.tag {
+  padding: 6rpx 20rpx;
+  border-radius: $radius-round;
+}
+
+.tagText {
+  font-size: $font-size-xs;
+  color: $color-text-white;
+  font-weight: $font-weight-medium;
+}
+
+.section {
+  padding: $spacing-lg $page-padding;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.sectionTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
   color: $color-text-primary;
   margin-bottom: $spacing-md;
 }
 
-.desc {
+.gameDesc {
   font-size: $font-size-md;
   color: $color-text-secondary;
   line-height: $line-height-loose;
+  margin-bottom: $spacing-lg;
+}
+
+.playInfo {
+  display: flex;
+  justify-content: space-around;
+  background-color: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.3);
+}
+
+.playInfoItem {
+  text-align: center;
+}
+
+.playInfoLabel {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  display: block;
+  margin-bottom: $spacing-xs;
+}
+
+.playInfoValue {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-primary-light;
+  display: block;
+}
+
+.myBestCard {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+  border: 2rpx solid rgba(99, 102, 241, 0.3);
+  border-radius: $radius-lg;
+  padding: $spacing-xl $spacing-lg;
+  text-align: center;
+}
+
+.myBestScore {
+  font-size: 80rpx;
+  font-weight: $font-weight-bold;
+  background: linear-gradient(135deg, $color-primary-light, $color-warning);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.myBestLabel {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  display: block;
+  margin-top: $spacing-sm;
+}
+
+.refreshBtn {
+  width: 56rpx;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: $color-bg-card;
+  margin-bottom: $spacing-md;
+}
+
+.refreshing {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.refreshIcon {
+  font-size: 32rpx;
+}
+
+.rankChangeBar {
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-md;
+  text-align: center;
+}
+
+.rankUp {
+  background-color: rgba(34, 197, 94, 0.15);
+  border: 1rpx solid rgba(34, 197, 94, 0.3);
+}
+
+.rankDown {
+  background-color: rgba(239, 68, 68, 0.15);
+  border: 1rpx solid rgba(239, 68, 68, 0.3);
+}
+
+.rankChangeText {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+}
+
+.pendingBar {
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-md;
+  text-align: center;
+  background-color: rgba(245, 158, 11, 0.15);
+  border: 1rpx solid rgba(245, 158, 11, 0.3);
+}
+
+.pendingText {
+  font-size: $font-size-sm;
+  color: $color-warning;
+}
+
+.leaderboard {
+  background-color: $color-bg-card;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.3);
+}
+
+.lbRow {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md $spacing-lg;
+  border-bottom: 1rpx solid rgba(148, 163, 184, 0.1);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.lbRowMe {
+  background-color: rgba(99, 102, 241, 0.1);
+}
+
+.lbRank {
+  width: 56rpx;
+  text-align: center;
+}
+
+.lbRankIcon {
+  font-size: $font-size-lg;
+}
+
+.lbAvatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background-color: rgba(148, 163, 184, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $spacing-md;
+}
+
+.lbAvatarIcon {
+  font-size: 32rpx;
+}
+
+.lbName {
+  flex: 1;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  font-weight: $font-weight-medium;
+}
+
+.lbNameMe {
+  color: $color-primary-light;
+  font-weight: $font-weight-semibold;
+}
+
+.lbScore {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-warning;
+}
+
+.lbEmpty {
+  padding: $spacing-xl;
+  text-align: center;
+}
+
+.lbEmptyText {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.startBtnWrap {
+  padding: $spacing-lg $page-padding;
+  margin-top: $spacing-md;
+}
+
+.startBtn {
+  @include flex-center;
+  height: $button-height-lg;
+  background: linear-gradient(135deg, $color-primary 0%, $color-warning 100%);
+  border-radius: $radius-button;
+  box-shadow: 0 8rpx 32rpx rgba(99, 102, 241, 0.4);
+
+  &:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+  }
+}
+
+.startBtnText {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.97);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.countdownContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdownNumber {
+  font-size: 240rpx;
+  font-weight: $font-weight-bold;
+  color: $color-warning;
+  animation: countdownPulse 1s ease-in-out infinite;
+  text-shadow: 0 0 60rpx rgba(245, 158, 11, 0.5);
+}
+
+@keyframes countdownPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.countdownHint {
+  font-size: $font-size-xl;
+  color: $color-text-secondary;
+  margin-top: $spacing-lg;
+}
+
+.gameTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $spacing-lg;
+  padding-top: calc(#{$spacing-md} + env(safe-area-inset-top));
+  background-color: rgba(30, 41, 59, 0.95);
+  border-bottom: 1rpx solid rgba(148, 163, 184, 0.1);
+}
+
+.gameStat {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.gameStatLabel {
+  font-size: $font-size-md;
+}
+
+.gameStatValue {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+  min-width: 80rpx;
+}
+
+.timeWarning {
+  color: #EF4444;
+  animation: timeBlink 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes timeBlink {
+  from { opacity: 1; }
+  to { opacity: 0.4; }
+}
+
+.comboActive {
+  color: $color-warning;
+  text-shadow: 0 0 20rpx rgba(245, 158, 11, 0.6);
+}
+
+.pauseBtn {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(148, 163, 184, 0.2);
+  border: 2rpx solid rgba(148, 163, 184, 0.3);
+
+  &:active {
+    background-color: rgba(148, 163, 184, 0.3);
+  }
+}
+
+.pauseBtnText {
+  font-size: $font-size-md;
+  color: $color-text-white;
+}
+
+.gameArea {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  margin: $spacing-sm;
+  border-radius: $radius-lg;
+}
+
+.target {
+  position: absolute;
+  width: 120rpx;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(30, 41, 59, 0.6);
+  border: 4rpx solid rgba(99, 102, 241, 0.6);
+  transition: transform 0.1s ease, opacity 0.1s ease;
+
+  &:active {
+    transform: translate(-50%, -50%) scale(1.3) !important;
+  }
+}
+
+.targetIcon {
+  font-size: 48rpx;
+  z-index: 2;
+}
+
+.targetRing {
+  position: absolute;
+  top: -4rpx;
+  left: -4rpx;
+  right: -4rpx;
+  bottom: -4rpx;
+  border-radius: 50%;
+  border: 4rpx solid $color-warning;
+}
+
+.scorePopup {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  animation: popupFloat 0.8s ease-out forwards;
+  z-index: 10;
+}
+
+@keyframes popupFloat {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -200%);
+  }
+}
+
+.scorePopupValue {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-warning;
+  text-shadow: 0 2rpx 8rpx rgba(245, 158, 11, 0.4);
+}
+
+.scorePopupCombo {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: #EF4444;
+}
+
+.gameBottomBar {
+  padding: $spacing-md $spacing-lg;
+  padding-bottom: calc(#{$spacing-md} + env(safe-area-inset-bottom));
+  background-color: rgba(30, 41, 59, 0.95);
+  border-top: 1rpx solid rgba(148, 163, 184, 0.1);
+  text-align: center;
+}
+
+.gameBottomHint {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.pauseOverlay {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(15, 23, 42, 0.9);
+}
+
+.pauseTitle {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+  margin-bottom: $spacing-xl;
+}
+
+.pauseScore {
+  font-size: $font-size-xl;
+  color: $color-warning;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-sm;
+}
+
+.pauseTime {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-xl * 2;
+}
+
+.pauseActions {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  width: 80%;
+}
+
+.resumeBtn {
+  @include flex-center;
+  height: $button-height-lg;
+  background: linear-gradient(135deg, $color-primary 0%, $color-warning 100%);
+  border-radius: $radius-button;
+
+  &:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+  }
+}
+
+.resumeBtnText {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+}
+
+.quitBtn {
+  @include flex-center;
+  height: $button-height-md;
+  border-radius: $radius-button;
+  border: 2rpx solid rgba(148, 163, 184, 0.3);
+  background-color: transparent;
+
+  &:active {
+    background-color: rgba(148, 163, 184, 0.1);
+  }
+}
+
+.quitBtnText {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+}
+
+.resultContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xl;
+  position: relative;
+}
+
+.newRecordBadge {
+  position: absolute;
+  top: 15%;
+  padding: $spacing-sm $spacing-xl;
+  background: linear-gradient(135deg, $color-warning, #FBBF24);
+  border-radius: $radius-round;
+  animation: recordBounce 0.8s ease-in-out infinite alternate;
+  box-shadow: 0 4rpx 24rpx rgba(245, 158, 11, 0.5);
+}
+
+@keyframes recordBounce {
+  from { transform: scale(1) rotate(-3deg); }
+  to { transform: scale(1.1) rotate(3deg); }
+}
+
+.newRecordText {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+}
+
+.resultTitle {
+  font-size: $font-size-xl;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-lg;
+}
+
+.resultScore {
+  font-size: 120rpx;
+  font-weight: $font-weight-bold;
+  background: linear-gradient(135deg, $color-warning, $color-primary-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: $spacing-sm;
+}
+
+.resultLabel {
+  font-size: $font-size-md;
+  color: $color-text-tertiary;
+  margin-bottom: $spacing-xl * 2;
+}
+
+.resultStats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: $spacing-xl * 2;
+  padding: $spacing-lg;
+  background-color: $color-bg-card;
+  border-radius: $radius-lg;
+}
+
+.resultStatItem {
+  text-align: center;
+}
+
+.resultStatValue {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+  display: block;
+  margin-bottom: $spacing-xs;
+}
+
+.resultStatLabel {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  display: block;
+}
+
+.resultActions {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  width: 100%;
+}
+
+.replayBtn {
+  @include flex-center;
+  height: $button-height-lg;
+  background: linear-gradient(135deg, $color-primary 0%, $color-warning 100%);
+  border-radius: $radius-button;
+
+  &:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+  }
+}
+
+.replayBtnText {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+}
+
+.backBtn {
+  @include flex-center;
+  height: $button-height-md;
+  border-radius: $radius-button;
+  border: 2rpx solid rgba(148, 163, 184, 0.3);
+  background-color: transparent;
+
+  &:active {
+    background-color: rgba(148, 163, 184, 0.1);
+  }
+}
+
+.backBtnText {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
 }

@@ -32,6 +32,15 @@ export interface VoiceMessage {
   replies?: VoiceMessage[];
 }
 
+export interface GamePlayConfig {
+  duration: number;
+  spawnInterval: number;
+  targetLifetime: number;
+  maxTargets: number;
+  pointsPerHit: number;
+  comboStep: number;
+}
+
 export interface Game {
   id: string;
   name: string;
@@ -42,6 +51,32 @@ export interface Game {
   difficulty: 'easy' | 'medium' | 'hard';
   estimatedTime: number;
   category: string;
+  playConfig: GamePlayConfig;
+  targetIcons: string[];
+}
+
+export interface LeaderboardEntry {
+  rank: number;
+  name: string;
+  avatar: string;
+  score: number;
+  isCurrentUser?: boolean;
+}
+
+export interface PendingScore {
+  gameId: string;
+  score: number;
+  timestamp: number;
+  retries: number;
+}
+
+export interface SavedGameState {
+  gameId: string;
+  score: number;
+  combo: number;
+  timeLeft: number;
+  pausedAt: number;
+  phase: 'countdown' | 'playing';
 }
 
 export interface Recipe {
