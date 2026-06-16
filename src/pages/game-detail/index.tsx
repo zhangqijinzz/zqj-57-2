@@ -80,10 +80,26 @@ const GameDetailPage: React.FC = () => {
   const popupIdRef = useRef(0);
   const isPausedRef = useRef(false);
   const phaseRef = useRef<GamePhase>('detail');
+  const scoreRef = useRef(0);
+  const comboRef = useRef(0);
+  const maxComboRef = useRef(0);
+  const endGameRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     phaseRef.current = phase;
   }, [phase]);
+
+  useEffect(() => {
+    scoreRef.current = score;
+  }, [score]);
+
+  useEffect(() => {
+    comboRef.current = combo;
+  }, [combo]);
+
+  useEffect(() => {
+    maxComboRef.current = maxCombo;
+  }, [maxCombo]);
 
   const clearAllTimers = useCallback(() => {
     if (gameTimerRef.current) clearInterval(gameTimerRef.current);
@@ -194,7 +210,7 @@ const GameDetailPage: React.FC = () => {
       setTimeLeft((prev) => {
         const next = Math.max(0, prev - 0.1);
         if (next <= 0) {
-          endGame();
+          if (endGameRef.current) endGameRef.current();
           return 0;
         }
         return Math.round(next * 10) / 10;
@@ -239,20 +255,30 @@ const GameDetailPage: React.FC = () => {
     clearAllTimers();
     setPhase('result');
 
+    const finalScore = scoreRef.current;
+    const finalMaxCombo = maxComboRef.current;
+
     if (!id) return;
     const currentBest = getMyBest(id);
-    setIsNewRecord(score > currentBest && score > 0);
+    setIsNewRecord(finalScore > currentBest && finalScore > 0);
 
-    const success = submitScore(id, score);
+    const success = submitScore(id, finalScore);
     if (!success) {
       Taro.showToast({ title: '分数暂存中，稍后重试', icon: 'none' });
     }
+
+    setScore(finalScore);
+    setMaxCombo(finalMaxCombo);
 
     setTimeout(() => {
       setLeaderboard(getLeaderboard(id));
       setMyBest(getMyBest(id));
     }, 200);
-  }, [id, score, clearAllTimers]);
+  }, [id, clearAllTimers]);
+
+  useEffect(() => {
+    endGameRef.current = endGame;
+  }, [endGame]);
 
   const handleTargetTap = useCallback(
     (targetId: string, targetX: number, targetY: number) => {
@@ -307,15 +333,15 @@ const GameDetailPage: React.FC = () => {
     if (id) {
       const state: SavedGameState = {
         gameId: id,
-        score,
-        combo,
+        score: scoreRef.current,
+        combo: comboRef.current,
         timeLeft,
         pausedAt: Date.now(),
         phase: 'playing',
       };
       saveGameState(state);
     }
-  }, [id, score, combo, timeLeft, saveGameState]);
+  }, [id, timeLeft, saveGameState]);
 
   const resumeGame = useCallback(() => {
     const pauseDuration = (Date.now() - pauseTimeRef.current) / 1000;
@@ -328,7 +354,7 @@ const GameDetailPage: React.FC = () => {
         showCancel: false,
         confirmText: '查看结果',
         success: () => {
-          endGame();
+          if (endGameRef.current) endGameRef.current();
         },
       });
       return;
@@ -371,6 +397,8 @@ const GameDetailPage: React.FC = () => {
               setPhase('playing');
               setScore(savedState.score);
               setCombo(savedState.combo);
+              scoreRef.current = savedState.score;
+              comboRef.current = savedState.combo;
               setTimeLeft(savedState.timeLeft);
               setTargets([]);
               setScorePopups([]);
@@ -383,7 +411,7 @@ const GameDetailPage: React.FC = () => {
                 setTimeLeft((prev) => {
                   const next = Math.max(0, prev - 0.1);
                   if (next <= 0) {
-                    endGame();
+                    if (endGameRef.current) endGameRef.current();
                     return 0;
                   }
                   return Math.round(next * 10) / 10;
